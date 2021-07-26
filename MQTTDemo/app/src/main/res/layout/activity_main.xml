@@ -5,89 +5,99 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#00362828"
     tools:context=".MainActivity">
 
-    <LinearLayout android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:layout_width="0px"
-        android:layout_height="0px" >
-        <requestFocus />
-    </LinearLayout>
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/msg"
         android:layout_width="374dp"
         android:layout_height="520dp"
+        android:layout_marginBottom="181dp"
         android:ems="10"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/table"
+        app:layout_constraintHorizontal_bias="0.71"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/table"
-        >
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.55">
 
-        <ScrollView
-            android:id="@+id/SCROLLER_ID"
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginRight="14dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/buffer"
+            app:layout_constraintBottom_toTopOf="@+id/subscribedMsg"
+            app:layout_constraintEnd_toEndOf="@+id/subscribedMsg"
+            app:layout_constraintStart_toStartOf="@+id/subscribedMsg"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.51"
+            tools:srcCompat="@tools:sample/avatars[0]" />
+
+        <TextView
+            android:id="@+id/subscribedMsg"
             android:layout_width="374dp"
-            android:layout_height="520dp"
-            android:fillViewport="true"
-            android:scrollbars="vertical"
-            >
+            android:layout_height="100sp"
+            android:layout_marginStart="26dp"
+            android:layout_marginLeft="26dp"
+            android:layout_marginBottom="14dp"
+            android:gravity="bottom"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-            <TextView
-                android:id="@+id/subscribedMsg"
-                android:layout_width="374dp"
-                android:layout_height="520dp"
-                android:gravity="bottom"
-                android:layout_weight="1.0"
-                />
-        </ScrollView>
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
     <TableLayout
         android:id="@+id/table"
         android:layout_width="0dp"
         android:layout_height="200dp"
+        android:background="@android:color/black"
         android:gravity="center"
         android:stretchColumns="0,1"
-        android:background="@android:color/black"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/navigation"
-        >
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="1dp"
-        android:layout_weight="1"
-        android:background="#000000">
-
-        <TextView
+        <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_column="0"
             android:layout_margin="1dp"
-            android:background="#FFFFFF"
-            android:gravity="center_vertical"
-            android:text="Connect Status"
-            android:textStyle="bold" />
+            android:layout_weight="1"
+            android:background="#000000">
 
-        <TextView
-            android:id="@+id/cnxStatus"
-            android:layout_width="match_parent"
-            android:layout_height="24dp"
-            android:layout_column="1"
-            android:layout_margin="1dp"
-            android:layout_centerVertical="true"
-            android:background="#FFFFFF"
-            android:gravity="center_vertical"
-            android:hint="Connect status"
-            android:textStyle="normal" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:layout_margin="1dp"
+                android:background="#FFFFFF"
+                android:gravity="center_vertical"
+                android:text="@string/connect_status"
+                android:textStyle="bold"
+                android:visibility="visible" />
 
-    </TableRow>
+            <TextView
+                android:id="@+id/cnxStatus"
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:layout_column="1"
 
-    <TableRow
+                android:layout_margin="1dp"
+                android:background="#FFFFFF"
+                android:gravity="center_vertical"
+                android:hint="@string/connect_status"
+                android:textStyle="normal" />
+
+        </TableRow>
+
+        <TableRow
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_margin="1dp"
@@ -97,7 +107,7 @@
 
             <TextView
                 android:layout_width="100dp"
-                android:layout_height="match_parent"
+                android:layout_height="26dp"
                 android:layout_column="0"
                 android:layout_margin="1dp"
                 android:background="#FFFFFF"
@@ -113,9 +123,10 @@
                 android:layout_margin="1dp"
                 android:background="#FFFFFF"
                 android:gravity="center_vertical"
-                android:text="tcp://iot.eclipse.org:1883"
+                android:text="tcp://mqtt.dev.move.pepperos.io:1883"
                 android:textStyle="normal" />
         </TableRow>
+
         <TableRow
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
@@ -143,9 +154,10 @@
                 android:background="#FFFFFF"
                 android:gravity="center_vertical"
                 android:hint="Enter User Name"
-                android:text=""
+                android:text="register"
                 android:textStyle="normal" />
         </TableRow>
+
         <TableRow
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
@@ -167,13 +179,13 @@
             <EditText
                 android:id="@+id/clientPw"
                 android:layout_width="200dp"
-                android:layout_height="match_parent"
+                android:layout_height="26dp"
                 android:layout_column="1"
                 android:layout_margin="1dp"
                 android:background="#FFFFFF"
                 android:gravity="center_vertical"
                 android:hint="Enter Password"
-                android:text=""
+                android:text="6bhYGXs5jN6qpODbvVyI"
                 android:textStyle="normal" />
         </TableRow>
 
@@ -198,12 +210,13 @@
             <EditText
                 android:id="@+id/subTopic"
                 android:layout_width="200dp"
-                android:layout_height="match_parent"
+                android:layout_height="26dp"
                 android:layout_column="1"
                 android:layout_margin="1dp"
                 android:background="#FFFFFF"
                 android:gravity="center_vertical"
                 android:hint="Enter Topic"
+                android:text="poc/img/capture"
                 android:textStyle="normal" />
 
         </TableRow>
@@ -235,6 +248,7 @@
                 android:background="#FFFFFF"
                 android:gravity="center_vertical"
                 android:hint="Enter Topic"
+                android:text="poc/cmd"
                 android:textStyle="normal" />
 
         </TableRow>
@@ -268,6 +282,7 @@
                 android:inputType="textMultiLine"
                 android:scrollbars="vertical"
                 android:singleLine="false"
+                android:text='{message: "capture"}'
                 android:textStyle="normal" />
         </TableRow>
 
@@ -277,8 +292,8 @@
         android:id="@+id/navigation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="0dp"
         android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
         android:background="?android:attr/windowBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

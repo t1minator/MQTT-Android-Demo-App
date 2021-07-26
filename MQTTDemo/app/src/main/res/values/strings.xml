@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Pepper M(Eye)QTT </string>
+    <string name="connect_status">Connect Status</string>
 </resources>
